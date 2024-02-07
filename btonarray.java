@@ -25,3 +25,5 @@ public class solution {
         printArr(arr);
     }
 }
+
+// TC and SC -> O(n)
