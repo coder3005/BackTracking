@@ -9,8 +9,8 @@ public class solution {
         }
         //recursion
         arr[i]=val;
-        changeArr(arr,i+1,val+1);
-        arr[i]=arr[i]-2;
+        changeArr(arr,i+1,val+1); //function call step
+        arr[i]=arr[i]-2; //backtracking call step
     }
 
     public static void printArr(int arr[]) {
