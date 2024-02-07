@@ -23,3 +23,6 @@ public class solution {
         findSubsets(str,"",0);
     }
 }
+
+// TC -> O(n*2^n)
+// SC -> O(n)
