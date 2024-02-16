@@ -2,8 +2,18 @@
 package BackTracking;
 
 public class solution {
-    static int dr[] = { 2, 1, -1, -2, -2, -1, 1, 2 };
+    static int dr[] = { 2, 1, -1, -2, -2, -1, 1, 2 }; 
     static int dc[] = { 1, 2, 2, 1, -1, -2, -2, -1 };
+    /* line code of 5 and 6 line represents
+        KnightPaths(arr,i-2,j+1,N,moveNumber+1);
+        KnightPaths(arr,i-1,j+2,N,moveNumber+1);
+        KnightPaths(arr,i+1,j+2,N,moveNumber+1);
+        KnightPaths(arr,i+2,j+1,N,moveNumber+1);
+        KnightPaths(arr,i+2,j-1,N,moveNumber+1);
+        KnightPaths(arr,i+1,j-2,N,moveNumber+1);
+        KnightPaths(arr,i-1,j-2,N,moveNumber+1);
+        KnightPaths(arr,i-2,j-1,N,moveNumber+1);
+    */
 
     public static boolean knightTour(int row, int col, int move, int chess[][]) {
         if (move == 64) {
