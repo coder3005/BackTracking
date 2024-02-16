@@ -1,44 +1,49 @@
-//knight problem (horse)
+//knight problem (horse in chess) 
 package BackTracking;
 
 public class solution {
-    public static void KnightPaths(int arr[][], int i, int j, int N, int moveNumber) {
-        if(i<0 || j<0 || i>=N || j>=N) {
-            return;
-        }
-        if(arr[i][j]!=0) { // we have been at this point before
-            return;
-        }
-        arr[i][j]=moveNumber;
-        if(moveNumber==N*N-1) {
-            printArr(arr);
-            return;
-        }
+    static int dr[] = { 2, 1, -1, -2, -2, -1, 1, 2 };
+    static int dc[] = { 1, 2, 2, 1, -1, -2, -2, -1 };
 
-        KnightPaths(arr,i-2,j+1,N,moveNumber+1);
-        KnightPaths(arr,i-1,j+2,N,moveNumber+1);
-        KnightPaths(arr,i+1,j+2,N,moveNumber+1);
-        KnightPaths(arr,i+2,j+1,N,moveNumber+1);
-        KnightPaths(arr,i+2,j-1,N,moveNumber+1);
-        KnightPaths(arr,i+1,j-2,N,moveNumber+1);
-        KnightPaths(arr,i-1,j-2,N,moveNumber+1);
-        KnightPaths(arr,i-2,j-1,N,moveNumber+1);
-
-        arr[i][j]=0; //you can visit this cell as part of some other parts
-    }
-    public static void printArr(int arr[][]) {
-        for(int i=0;i<arr.length;i++) {
-            for(int j=0;j<arr.length;j++) {
-                System.out.print(arr[i][j]+" ");
+    public static boolean knightTour(int row, int col, int move, int chess[][]) {
+        if (move == 64) {
+            for (int r = 0; r < 8; r++) {
+                for (int c = 0; c < 8; c++) {
+                    System.out.print(chess[r][c] + " ");
+                }
+                System.out.println();
             }
-            System.out.println();
+            return true;
         }
+        if (row < 0 || col < 0 || row >= 8 || col >= 8)
+            return false;
+        if (chess[row][col] != -1)
+            return false;
+
+        chess[row][col] = move;
+
+        for (int choice = 0; choice < 8; choice++) {
+            int newRow = row + dr[choice];
+            int newCol = col + dc[choice];
+
+            boolean res = knightTour(newRow, newCol, move + 1, chess);
+            if (res == true)
+                return res;
+        }
+
+        chess[row][col] = -1; // backtracking
+
+        return false;
     }
-    
+
     public static void main(String[] args) {
-        
-        KnightPaths(new int[8][8],0,0,8,0);
+        int srcRow = 0, srcCol = 0;
+        int chess[][] = new int[8][8];
+        for (int r = 0; r < 8; r++) {
+            for (int c = 0; c < 8; c++) {
+                chess[r][c] = -1;
+            }
+        }
+        knightTour(srcRow, srcCol, 0, chess);
     }
 }
-
-
